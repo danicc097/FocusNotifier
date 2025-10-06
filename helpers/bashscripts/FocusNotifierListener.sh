@@ -1,50 +1,50 @@
 #!/bin/bash
 
-VARDIR="/tmp/FocusNotifier";
+FocusNotifier_VARDIR="/tmp/FocusNotifier";
 
-while read -r line; do
-    if [[ ! "$line" == "§"* ]]; then
+while read -r FocusNotifier_line; do
+    if [[ ! "$FocusNotifier_line" == "§"* ]]; then
         continue;
     fi
 
-    value="$(echo "$line" | grep -o ": .*" | cut -c3-)";
-    mkdir -p "$VARDIR";
+    FocusNotifier_value="$(echo "$FocusNotifier_line" | grep -o ": .*" | cut -c3-)";
+    mkdir -p "$FocusNotifier_VARDIR";
 
-    case "$line" in
+    case "$FocusNotifier_line" in
         §pid*)
-            echo "$value" > "$VARDIR/pid.txt";
-            pname="$(ps -p "$value" -o comm=)";
-            echo "$pname" > "$VARDIR/pname.txt";
+            echo "$FocusNotifier_value" > "$FocusNotifier_VARDIR/pid.txt";
+            pname="$(ps -p "$FocusNotifier_value" -o comm=)";
+            echo "$pname" > "$FocusNotifier_VARDIR/pname.txt";
 
             echo "$pname";
-            echo "pid: $value";
+            echo "pid: $FocusNotifier_value";
             echo "pname: $pname";
         ;;
 
         §wname*)
-            echo "$value" > "$VARDIR/wname.txt";
-            echo "name: $value";
+            echo "$FocusNotifier_value" > "$FocusNotifier_VARDIR/wname.txt";
+            echo "name: $FocusNotifier_value";
         ;;
 
         §wclass*)
-            echo "$value" > "$VARDIR/wclass.txt";
-            echo "class: $value";
+            echo "$FocusNotifier_value" > "$FocusNotifier_VARDIR/wclass.txt";
+            echo "class: $FocusNotifier_value";
         ;;
 
         §wcaption*)
-            echo "$value" > "$VARDIR/wcaption.txt";
-            echo "caption: $value";
+            echo "$FocusNotifier_value" > "$FocusNotifier_VARDIR/wcaption.txt";
+            echo "caption: $FocusNotifier_value";
         ;;
 
         §end)
-            configdir="$HOME/.config/FocusNotifier"
-            listfile="$configdir/listeners.txt"
+            FocusNotifier_configdir="$HOME/.config/FocusNotifier"
+            FocusNotifier_listfile="$FocusNotifier_configdir/listeners.txt"
 
-            if [ -f $listfile ]; then
-                for listener in $(cat "$listfile")
+            if [ -f $FocusNotifier_listfile ]; then
+                for FocusNotifier_listener in $(cat "$FocusNotifier_listfile")
                 do
-                    echo "Calling listener: $listener"
-                    bash "$listener"
+                    echo "Calling listener: $FocusNotifier_listener"
+                    source "$FocusNotifier_listener"
                 done
             fi
         ;;

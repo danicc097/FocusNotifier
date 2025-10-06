@@ -9,5 +9,12 @@ install -D -t "$HOME/.local/bin/" activewindow;
 cd $SCRIPT_DIR/helpers/services
 install -D -t "$HOME/.config/systemd/user/" scot.massie.FocusNotifier.listener.service;
 
-# Enable and start the service
-systemctl --user enable --now scot.massie.FocusNotifier.listener.service;
+# Enable and start the service, or restart it if it's already running
+
+servicename="scot.massie.FocusNotifier.listener.service"
+
+if systemctl --user is-active --quiet "$servicename"; then
+    systemctl --user restart "$servicename";
+else
+    systemctl --user enable --now "$servicename";
+fi

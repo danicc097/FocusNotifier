@@ -8,3 +8,4 @@ rm -rf "$HOME/.config/FocusNotifier"
 rm "$HOME/.local/bin/activewindow";
 rm "$HOME/.local/bin/FocusNotifierListener.sh";
 
+notify-send -t 5000 -a "FocusNotifier" "Uninstalled!"

@@ -28,7 +28,7 @@ case "$1" in
 
             pid)
                 if [ -f "$VARDIR/pid.txt" ]; then
-                    echo "$(cat "$VARDIR/pid.txt")";
+                    echo "$(< "$VARDIR/pid.txt")";
                 else
                     echo "(unknown)";
                 fi
@@ -36,7 +36,7 @@ case "$1" in
 
             pname)
                 if [ -f "$VARDIR/pname.txt" ]; then
-                    echo "$(cat "$VARDIR/pname.txt")";
+                    echo "$(< "$VARDIR/pname.txt")";
                 else
                     echo "(unknown)";
                 fi
@@ -44,7 +44,7 @@ case "$1" in
 
             name)
                 if [ -f "$VARDIR/wname.txt" ]; then
-                    echo "$(cat "$VARDIR/wname.txt")";
+                    echo "$(< "$VARDIR/wname.txt")";
                 else
                     echo "(unknown)";
                 fi
@@ -52,7 +52,7 @@ case "$1" in
 
             class)
                 if [ -f "$VARDIR/wclass.txt" ]; then
-                    echo "$(cat "$VARDIR/wclass.txt")";
+                    echo "$(< "$VARDIR/wclass.txt")";
                 else
                     echo "(unknown)";
                 fi
@@ -60,7 +60,7 @@ case "$1" in
 
             caption)
                 if [ -f "$VARDIR/wcaption.txt" ]; then
-                    echo "$(cat "$VARDIR/wcaption.txt")";
+                    echo "$(< "$VARDIR/wcaption.txt")";
                 else
                     echo "(unknown)";
                 fi

@@ -18,3 +18,5 @@ if systemctl --user is-active --quiet "$servicename"; then
 else
     systemctl --user enable --now "$servicename";
 fi
+
+notify-send -t 5000 -a "FocusNotifier" "Installed!"

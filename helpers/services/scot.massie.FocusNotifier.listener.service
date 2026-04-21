@@ -1,6 +1,6 @@
 [Unit]
 Description=Listen for dbus messages from FocusNotifier
-After=default.target
+After=graphical-session.target
 
 [Service]
 ExecStart=%h/.local/bin/FocusNotifierListener.sh
